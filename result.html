@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection Result</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        header, footer {
+            background-color: #111;
+            color: #0f0;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 50px);
+            overflow-x: auto;
+        }
+
+        .result-container {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            max-width: 800px;
+            overflow-y: auto;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0f0;
+            letter-spacing: 2px;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .danger-button {
+            border: 2px solid #f00;
+            display: inline-block;
+            padding: 12px 24px;
+            cursor: pointer;
+            background-color: #f00;
+            color: #000;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+        .danger-button:hover {
+            background-color: #900;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background-color: #111;
+            color: #0f0;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .result-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-skull-crossbones"></i> INTRUDER ALERT <i class="fas fa-exclamation-triangle"></i></h1>
+    </header>
+    <main>
+        <div class="result-container">
+            <h2>Object Detection Result</h2>
+            <img src="data:image/jpeg;base64,{{ annotated_image }}" alt="Predicted Image">
+            <a href="/" class="danger-button">Terminate Session</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 DarkNet | Ratnakar Kaushal's Lair | All Rights Reserved</p>
+    </footer>
+</body>
+</html>

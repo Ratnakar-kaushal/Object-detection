@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Gothic A1', sans-serif;
+            background-color: #000;
+            color: #0f0;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        header, footer {
+            background-color: #111;
+            color: #0f0;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 2rem;
+            margin-top: 80px; /* Adjust based on header height */
+        }
+
+        .about-section, .right-section {
+            flex: 1 1 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .about-section h2 {
+            color: #0f0;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            color: #0f0;
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 24px;
+            color: #0f0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        footer {
+            background-color: #111;
+            color: #0f0;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .menu-bar {
+            display: flex;
+            justify-content: right;
+            gap: 2rem;
+            padding: 1rem;
+            background-color: #111;
+            border-bottom: 1px solid #0f0;
+        }
+
+        .menu-bar a {
+            color: #0f0;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .menu-bar a:hover {
+            color: #00ff7f;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .card {
+            background-color: #111;
+            color: #0f0;
+            border: 1px solid #0f0;
+            border-radius: 8px;
+            padding: 1rem;
+            width: 250px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            border-radius: 8px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .right-section img {
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border: 2px solid #0f0;
+            margin-bottom: 1rem;
+        }
+
+        .download-button {
+            background-color: #0f0;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .download-button:hover {
+            background-color: #00ff7f;
+        }
+
+        .motto {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #0f0;
+        }
+
+        .float, .float-left {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 110px;
+            left: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+        }
+
+        .float-left {
+            bottom: 40px;
+            background-color: #DD4B39;
+        }
+
+        .float i, .float-left i {
+            margin-top: 16px;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .about-section, .right-section {
+                max-width: 100%;
+                margin: 1rem 0;
+            }
+
+            .menu-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .float, .float-left {
+                width: 50px;
+                height: 50px;
+                bottom: 80px;
+                left: 20px;
+                font-size: 24px;
+            }
+
+            .float-left {
+                bottom: 20px;
+            }
+
+            .float i, .float-left i {
+                margin-top: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-bar">
+            <a href="/">Home</a>
+            <a href="/about">About Me</a>
+            <a href="/project">Projects</a>
+        </div>
+        <h1>About Me</h1>
+    </header>
+    <main>
+        <div class="about-section">
+            <h2>Personal Information</h2>
+            <p><h3>I am Ratnakar Sharma, Data Science intern at Sabudh Foundation. 
+                During my internship, I have created a webapp for object detection. For instance currently i have trained my object detection model that is MobileNetSSD_V1 with books images. It has two labels books and titles. 
+            </h3></p>
+            <h2>Resume</h2>
+            <a href="/static/Ratnakar_resume.pdf" class="download-button" download="Ratnakar_resume.pdf">Download Resume</a>
+            <div class="card-container">
+                <div class="card">
+                    <img src="static/card1.jpg" alt="B.Tech Image">
+                    <h3>B.Tech (Computer Science And Engineering)</h3>
+                    <p>Punjabi University, Patiala</p>
+                    <p>CGPA: 8.55</p>
+                    <h3>Co-curricular:</h3>
+                    <ul>
+                        <li>Workshop Organizer</li>
+                        <li>GDSC ML Core</li>
+                        <li>Class Representative</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <img src="static/card2.jpg" alt="Senior Secondary Image">
+                    <h3>Senior Secondary (10+2)</h3>
+                    <p>Government Senior Secondary School, Rampura Phul</p>
+                    <p>Percentage: 91.55%</p>
+                    <h3>Co-curricular:</h3>
+                    <ul>
+                        <li>Head Boy</li>
+                        <li>Chess Player</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#your_facebook_link"><i class="fab fa-facebook"></i></a>
+                <a href="#your_email_link"><i class="fas fa-envelope"></i></a>
+                <a href="#your_instagram_link"><i class="fab fa-instagram"></i></a>
+                <a href="#your_linkedin_link"><i class="fab fa-linkedin"></i></a>
+                <a href="#your_snapchat_link"><i class="fab fa-snapchat"></i></a>
+                <a href="#your_github_link"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        <div class="right-section">
+            <img src="static/rtn.png" alt="Your Image">
+            <h1>Ratnakar Sharma</h1>
+            <p class="motto"><b>The best way to predict the future is to create it.</b></p>
+        </div>
+    </main>
+    <footer>
+        &copy; 2024 Ratnakar Sharma. All rights reserved.
+    </footer>
+    <a href="https://api.whatsapp.com/send?phone=7347665345&text=Hey%21 ... your message... " class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
+    <a href="/home/ratnakar/project/p2/static/Ratnakar_resume.pdf" class="float-left" target="_blank">
+        <i class="fa fa-file-pdf-o my-float"></i>
+    </a>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a2adb9ad-774c-4104-969e-69ebdce6b983";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+</body>
+</html>

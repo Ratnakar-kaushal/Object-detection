@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Submitted</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Replace with your main CSS file -->
+    <style>
+        /* Additional specific styles for submit_message page */
+        body {
+            background-color: #000;
+            color: rgb(255, 255, 255);
+            font-family: 'Gothic A1', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: rgb(255, 255, 255);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: rgb(255, 255, 255);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .back-to-home a {
+            background-color: #f00;
+            color: #000;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-home a:hover {
+            background-color: #900;
+        }
+
+        footer {
+            background-color: #111;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .submit-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-top: 30px;
+            box-shadow: 0 0 10px rgba(246, 246, 246, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='objlogo.png') }}" alt="Object Logo" class="logo">
+        <h1>Message Submitted</h1>
+    </header>
+    <div class="container">
+        <h2>Thank You!</h2>
+        <p>Your message has been submitted successfully.</p>
+        <img src="{{ url_for('static', filename='submit.jpg') }}" alt="Submitted Image" class="submit-image">
+        <div class="back-to-home">
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+    <footer>&copy; All rights reserved.</footer>
+</body>
+</html>

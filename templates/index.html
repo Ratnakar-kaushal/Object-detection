@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection and OCR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: 'Gothic A1', sans-serif;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header, footer {
+            background-color: #111;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            color: rgb(0, 0, 0);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #f00;
+        }
+
+        .menu-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .menu-bar a {
+            color: rgb(255, 255, 255);
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .menu-bar a:hover {
+            color: #f00;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .section {
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: 12px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: rgb(255, 255, 255);
+            text-align: left;
+        }
+
+        .section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .object-detection {
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .object-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .prediction-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem;
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .prediction-card {
+            width: calc(33.33% - 1rem);
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .prediction-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid rgb(250, 250, 250);
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #111;
+            color: rgb(255, 255, 255);
+        }
+
+        .contact-form input[type="submit"] {
+            background-color: #f00;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form input[type="submit"]:hover {
+            background-color: #900;
+        }
+
+        .contact-form textarea {
+            resize: none;
+            height: 150px;
+        }
+
+        footer {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 1rem 0;
+            width: 100%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .section, .object-detection, .prediction-cards, .contact-form {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="main-nav">
+            <!-- <div class="social-icons">
+                <a href="https://www.facebook.com/Rtn.kaushal1?mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="mailto:rtnsharma2403@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.instagram.com/ratnakar_kaushal?igshid=ZDc4ODBmNjlmNQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/ratnakar-sharma-89346b210" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.snapchat.com/rtnsharma123?share_id=OluD0bGFdIc&locale=en-US" target="_blank"><i class="fab fa-snapchat"></i></a>
+                <a href="https://github.com/Ratnakar-kaushal" target="_blank"><i class="fab fa-github"></i></a>
+            </div> -->
+            <h1>Object Detection and OCR</h1>
+            <nav class="menu-bar">
+                <a href="/"><b>Home</b></a>
+                <!-- <a href="/about">About Me</a> -->
+                <a href="/project">Project</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="section">
+            <h2>About the Project</h2>
+            <p>This project focuses on integrating object detection and optical character recognition (OCR) technologies using TensorFlow Lite and Tesseract. It allows users to upload images or videos to detect objects in real-time and extract text content.</p>
+        </section>
+
+        <section class="section object-detection">
+            <h2>What is Object Detection?</h2>
+            <p>Object detection is a computer vision technique for identifying and locating objects of interest in images or videos. This project uses a TensorFlow Lite model to perform real-time object detection.</p>
+            <img src="{{ url_for('static', filename='objlogo.png') }}" alt="Object Logo" class="object-image">
+        </section>
+
+        <section class="section">
+            <h2>What is OCR (Optical Character Recognition)?</h2>
+            <p>OCR is a technology that extracts text from images or scanned documents, making it editable and searchable. Tesseract, integrated into this project, performs OCR to recognize and extract text from detected objects.</p>
+        </section>
+
+        <section class="section prediction-cards">
+            <div class="prediction-card">
+                <img src="{{ url_for('static', filename='prediction_image1.png') }}" alt="Prediction 1">
+                <p><b>Prediction 1.</b></p>
+            </div>
+            <div class="prediction-card">
+                <img src="{{ url_for('static', filename='prediction_image2.png') }}" alt="Prediction 2">
+                <p><b>Prediction 2.</b></p>
+            </div>
+            <div class="prediction-card">
+                <img src="{{ url_for('static', filename='prediction_image3.png') }}" alt="Prediction 3">
+                <p><b>Prediction 3.</b></p>
+            </div>
+            <div class="prediction-card">
+                <img src="{{ url_for('static', filename='prediction_image4.png') }}" alt="Prediction 1">
+                <p><b>Prediction 4.</b></p>
+            </div>
+        </section>
+
+        <section class="section contact-form">
+            <h2>Contact Us</h2>
+            <form action="/submit_message" method="post">
+                <input type="text" name="name" placeholder="Your Name" required><br>
+                <input type="email" name="email" placeholder="Your Email" required><br>
+                <textarea name="message" placeholder="Your Message" required></textarea><br>
+                <input type="submit" value="Send Message">
+            </form>
+        </section>
+    </main>
+    <!-- <footer>
+        &copy; 2024 Ratnakar Sharma. All rights reserved.
+    </footer> -->
+</body>
+</html>
